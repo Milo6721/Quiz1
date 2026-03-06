@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Wiedzy Podstawowej - Ranking</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+text-align:center;
+margin:0;
+padding:0;
+}
+.container{
+max-width:800px;
+margin:auto;
+padding:20px;
+background:rgba(0,0,0,0.6);
+border-radius:15px;
+margin-top:40px;
+}
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+.answer{
+display:block;
+background:white;
+color:black;
+}
+.correct{background:#4CAF50;color:white;}
+.wrong{background:#f44336;color:white;}
+input{
+padding:10px;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+#rankingList{
+text-align:left;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Quiz Wiedzy Podstawowej</h1>
+<p>Wpisz imię:</p>
+<input type="text" id="playerName">
+<br>
+<button onclick="startQuiz()">Rozpocznij</button>
+
+<div id="quiz" style="display:none;">
+<h2 id="question"></h2>
+<div id="answers"></div>
+<p>Czas: <span id="timer">0</span> s</p>
+</div>
+
+<div id="result" style="display:none;">
+<h2>Wynik</h2>
+<p id="scoreText"></p>
+<p id="percentText"></p>
+<p id="gradeText"></p>
+<button onclick="saveResult()">Zapisz wynik</button>
+</div>
+
+<h2>Ranking</h2>
+<div id="rankingList"></div>
+</div>
+
+<script>
+const questions = [
+{q:"Kim jest Miłosz Górski?",a:["Założycielem OpenAI","Poetą","Profesorem","Sportowcem"],correct:0},
+{q:"Co oznacza skrót AI?",a:["Artificial Intelligence","Advanced Internet","Auto Input","Active Integration"],correct:0},
+{q:"Jaka jest stolica Polski?",a:["Warszawa","Kraków","Gdańsk","Poznań"],correct:0},
+{q:"Ile to 5 x 6?",a:["30","25","40","35"],correct:0},
+{q:"Która planeta jest czerwona?",a:["Mars","Wenus","Merkury","Jowisz"],correct:0},
+{q:"Największy kontynent?",a:["Azja","Europa","Afryka","Australia"],correct:0},
+{q:"Globalna sieć to?",a:["Internet","LAN","USB","Ethernet"],correct:0},
+{q:"Największy ocean?",a:["Ocean Spokojny","Atlantycki","Indyjski","Arktyczny"],correct:0},
+{q:"Podstawowy język stron?",a:["HTML","Python","Java","C++"],correct:0},
+{q:"Największy kraj świata?",a:["Rosja","USA","Kanada","Chiny"],correct:0}
+];
+
+let current = 0;
+let score = 0;
+let startTime;
+let timerInterval;
+
+function startQuiz(){
+document.getElementById('quiz').style.display="block";
+document.getElementById('result').style.display="none";
+current=0;
+score=0;
+startTime = Date.now();
+timerInterval = setInterval(()=>{
+document.getElementById('timer').innerText=Math.floor((Date.now()-startTime)/1000);
+},1000);
+showQuestion();
+}
+
+function showQuestion(){
+if(current>=questions.length){
+endQuiz();
+return;
+}
+const q=questions[current];
+document.getElementById('question').innerText=q.q;
+const answersDiv=document.getElementById('answers');
+answersDiv.innerHTML="";
+q.a.forEach((ans,i)=>{
+const btn=document.createElement("button");
+btn.innerText=ans;
+btn.className="answer";
+btn.onclick=()=>checkAnswer(i);
+answersDiv.appendChild(btn);
+});
+}
+
+function checkAnswer(index){
+if(index===questions[current].correct) score++;
+current++;
+showQuestion();
+}
+
+function endQuiz(){
+clearInterval(timerInterval);
+document.getElementById('quiz').style.display="none";
+document.getElementById('result').style.display="block";
+let percent=Math.round((score/questions.length)*100);
+let time=Math.floor((Date.now()-startTime)/1000);
+document.getElementById('scoreText').innerText="Punkty: "+score+"/"+questions.length;
+document.getElementById('percentText').innerText="Procent: "+percent+"%";
+let grade=percent>=90?6:percent>=75?5:percent>=60?4:percent>=45?3:2;
+document.getElementById('gradeText').innerText="Ocena: "+grade+" / 6";
+}
+
+function saveResult(){
+const name=document.getElementById('playerName').value||"Anonim";
+let percent=Math.round((score/questions.length)*100);
+let time=Math.floor((Date.now()-startTime)/1000);
+let record={name:name,score:score,percent:percent,time:time,date:new Date().toLocaleString()};
+let data=JSON.parse(localStorage.getItem("ranking")||"[]");
+data.push(record);
+localStorage.setItem("ranking",JSON.stringify(data));
+loadRanking();
+alert("Zapisano!");
+}
+
+function loadRanking(){
+let data=JSON.parse(localStorage.getItem("ranking")||"[]");
+data.sort((a,b)=>b.score-a.score);
+let list=document.getElementById("rankingList");
+list.innerHTML="";
+data.forEach(r=>{
+list.innerHTML+=`<p>${r.name} - ${r.score} pkt - ${r.percent}% - ${r.time}s</p>`;
+});
+}
+
+window.onload=loadRanking;
+</script>
+</body>
+</html>
