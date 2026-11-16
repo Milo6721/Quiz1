@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruch to zdrowie – kampania dla właścicieli psów</title>
+<style>
+  :root { --green:#2e9d4f; --green-dark:#1f7a3a; --green-light:#e8f6ec; --blue:#1e3fa8; --blue-light:#e9eefc; --text:#1c2430; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:"Segoe UI",Roboto,Arial,sans-serif; color:var(--text); line-height:1.6; background:#fff; }
+  a { color:inherit; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+  header { position:sticky; top:0; background:#fff; border-bottom:3px solid var(--green); z-index:10; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:10px 20px; max-width:960px; margin:0 auto; flex-wrap:wrap; gap:8px; }
+  nav .brand { font-weight:800; color:var(--green-dark); font-size:1.2rem; text-decoration:none; }
+  nav ul { display:flex; gap:18px; list-style:none; flex-wrap:wrap; }
+  nav ul a { text-decoration:none; font-weight:600; color:var(--blue); }
+  nav ul a:hover { color:var(--green); }
+  .hero { background:linear-gradient(135deg,var(--green) 0%,var(--blue) 100%); color:#fff; padding:60px 0 70px; }
+  .hero .wrap { display:flex; align-items:center; gap:30px; flex-wrap:wrap; justify-content:center; }
+  .hero h1 { font-size:clamp(2.4rem,7vw,4.2rem); line-height:1.1; }
+  .hero p { font-size:1.2rem; margin:14px 0 24px; max-width:460px; }
+  .hero svg { width:220px; height:auto; background:#fff; border-radius:50%; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+  .btn { display:inline-block; background:#fff; color:var(--blue); font-weight:800; padding:12px 26px; border-radius:30px; text-decoration:none; transition:transform .15s; }
+  .btn:hover { transform:scale(1.06); }
+  section { padding:56px 0; }
+  section.alt { background:var(--green-light); }
+  h2 { color:var(--blue); font-size:2rem; margin-bottom:8px; }
+  h2::after { content:""; display:block; width:70px; height:5px; background:var(--green); border-radius:3px; margin:8px 0 22px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+  .card { background:#fff; border-radius:14px; padding:22px; box-shadow:0 3px 12px rgba(0,0,0,.09); border-top:5px solid var(--green); }
+  .card h3 { color:var(--green-dark); margin-bottom:6px; }
+  .num { display:inline-flex; width:42px; height:42px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; font-size:1.3rem; align-items:center; justify-content:center; margin-bottom:10px; }
+  .facts .card { border-top-color:var(--blue); text-align:center; }
+  .facts strong { display:block; font-size:2rem; color:var(--blue); }
+  .contact { text-align:center; }
+  .phone { display:inline-block; margin:14px 0; font-size:clamp(1.6rem,6vw,2.6rem); font-weight:800; background:var(--green); color:#fff; padding:14px 32px; border-radius:40px; text-decoration:none; }
+  .phone:hover { background:var(--green-dark); }
+  .team { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:10px; }
+  .team span { background:var(--blue-light); color:var(--blue); font-weight:700; padding:10px 22px; border-radius:30px; }
+  footer { background:var(--blue); color:#fff; text-align:center; padding:22px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="#start">Ruch to zdrowie</a>
+    <ul>
+      <li><a href="#o-akcji">O akcji</a></li>
+      <li><a href="#dlaczego">Dlaczego ruch?</a></li>
+      <li><a href="#zadania">Zadania</a></li>
+      <li><a href="#zgloszenie">Zgłoś się</a></li>
+      <li><a href="#zespol">Zespół</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero" id="start">
+  <div class="wrap">
+    <svg viewBox="0 0 200 200" role="img" aria-label="Logo: biegnący ludzik">
+      <circle cx="108" cy="38" r="22" fill="#1e3fa8"/>
+      <circle cx="100" cy="34" r="3.5" fill="#fff"/><circle cx="116" cy="34" r="3.5" fill="#fff"/>
+      <path d="M98 46 Q108 56 118 46" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g stroke="#1e3fa8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M106 62 L100 108"/>
+        <path d="M104 74 L132 86 L150 70"/>
+        <path d="M104 74 L80 92 L60 84"/>
+        <path d="M100 108 L128 128 L122 160"/>
+        <path d="M100 108 L82 134 L50 140"/>
+      </g>
+      <path d="M20 168 H180" stroke="#2e9d4f" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>Ruch to zdrowie</h1>
+      <p>Wyjdź z psem na spacer, pobiegaj, pobaw się – i dołącz do naszego challenge’u! Każdy uczestnik dostaje nagrodę.</p>
+      <a class="btn" href="#zgloszenie">Dołącz do akcji</a>
+    </div>
+  </div>
+</div>
+
+<section id="o-akcji">
+  <div class="wrap">
+    <h2>O akcji</h2>
+    <p>Nasze psy muszą wychodzić na zewnątrz, chodzić na spacery i biegać. Zachęcamy Was do ruchu razem ze swoimi psami. Organizujemy spacery i biegi z psami, a <strong>każdy uczestnik dostaje niespodziankę</strong>. Ci, którzy chcą, mogą dodatkowo dać darowiznę – wszystkie środki przeznaczymy na kolejne akcje.</p>
+    <p style="margin-top:12px"><strong>Dla kogo?</strong> Dla młodych właścicieli psów (i ich czworonogów!). <strong>Termin:</strong> wkrótce ogłosimy datę.</p>
+  </div>
+</section>
+
+<section class="alt" id="dlaczego">
+  <div class="wrap">
+    <h2>Dlaczego warto się ruszać?</h2>
+    <div class="grid facts">
+      <div class="card"><strong>60 min</strong>dziennie ruchu zaleca WHO dzieciom i młodzieży</div>
+      <div class="card"><strong>150 min</strong>tygodniowo umiarkowanej aktywności zaleca WHO dorosłym</div>
+      <div class="card"><strong>2 × zdrowiej</strong>ruch pomaga i Tobie, i Twojemu psu – lepsza kondycja, humor i sen</div>
+    </div>
+    <p style="margin-top:18px">Spacer z psem to najprostszy sposób, żeby ruszać się codziennie – pies nie przyjmuje wymówek!</p>
+  </div>
+</section>
+
+<section id="zadania">
+  <div class="wrap">
+    <h2>3 zadania do wykonania</h2>
+    <p style="margin-bottom:18px">Aby dostać się na konkurs, trzeba wykonać trzy zadania:</p>
+    <div class="grid">
+      <div class="card"><div class="num">1</div><h3>Spacer</h3><p>Nagraj, jak idziesz ze swoim psem na spacer.</p></div>
+      <div class="card"><div class="num">2</div><h3>Sztuczka</h3><p>Nagraj, jak robisz sztuczkę ze swoim psem.</p></div>
+      <div class="card"><div class="num">3</div><h3>Dwa kółka</h3><p>Zrób 2 kółka z psem wokół osiedla lub parku w swojej okolicy.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="zgloszenie">
+  <div class="wrap contact">
+    <h2 style="display:inline-block">Jak się zgłosić?</h2>
+    <p>Zadzwoń i wyślij nagrane zadania pod numer:</p>
+    <a class="phone" href="tel:+48534176475">+48 534 176 475</a>
+    <p>Każdy uczestnik dostaje niespodziankę! Termin akcji ogłosimy wkrótce.</p>
+  </div>
+</section>
+
+<section id="zespol">
+  <div class="wrap" style="text-align:center">
+    <h2 style="display:inline-block">Zespół „Ruch to zdrowie”</h2>
+    <p>Autorzy kampanii:</p>
+    <div class="team"><span>Miłosz</span><span>Dawid</span><span>Franek</span><span>Krzyś</span></div>
+  </div>
+</section>
+
+<footer>
+  <p>© Ruch to zdrowie – projekt z edukacji zdrowotnej</p>
+</footer>
+
+</body>
+</html>
